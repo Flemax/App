@@ -27,6 +27,12 @@ class MesureProtection
      */
     private $Description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Travailleur::class, inversedBy="idMesureProtection")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idMesureProtection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class MesureProtection
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getIdMesureProtection(): ?Travailleur
+    {
+        return $this->idMesureProtection;
+    }
+
+    public function setIdMesureProtection(?Travailleur $idMesureProtection): self
+    {
+        $this->idMesureProtection = $idMesureProtection;
 
         return $this;
     }

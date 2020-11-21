@@ -119,9 +119,45 @@ class Travailleur
      */
     private $idAtelier;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ChefService::class, mappedBy="idChefService", orphanRemoval=true)
+     */
+    private $idChefService;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Moniteur::class, mappedBy="idMoniteur", orphanRemoval=true)
+     */
+    private $idMoniteur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AssistanteSociale::class, mappedBy="idAssistantSociale", orphanRemoval=true)
+     */
+    private $idAssistanteSociale;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Psychologue::class, mappedBy="idPsychologue", orphanRemoval=true)
+     */
+    private $idPsychologue;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Infirmiere::class, mappedBy="idInfirmiere", orphanRemoval=true)
+     */
+    private $idInfirmiere;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MesureProtection::class, mappedBy="idMesureProtection", orphanRemoval=true)
+     */
+    private $idMesureProtection;
+
     public function __construct()
     {
         $this->idAtelier = new ArrayCollection();
+        $this->idChefService = new ArrayCollection();
+        $this->idMoniteur = new ArrayCollection();
+        $this->idAssistanteSociale = new ArrayCollection();
+        $this->idPsychologue = new ArrayCollection();
+        $this->idInfirmiere = new ArrayCollection();
+        $this->idMesureProtection = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -381,6 +417,186 @@ class Travailleur
             // set the owning side to null (unless already changed)
             if ($idAtelier->getIdAtelier() === $this) {
                 $idAtelier->setIdAtelier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChefService[]
+     */
+    public function getIdChefService(): Collection
+    {
+        return $this->idChefService;
+    }
+
+    public function addIdChefService(ChefService $idChefService): self
+    {
+        if (!$this->idChefService->contains($idChefService)) {
+            $this->idChefService[] = $idChefService;
+            $idChefService->setIdChefService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdChefService(ChefService $idChefService): self
+    {
+        if ($this->idChefService->removeElement($idChefService)) {
+            // set the owning side to null (unless already changed)
+            if ($idChefService->getIdChefService() === $this) {
+                $idChefService->setIdChefService(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Moniteur[]
+     */
+    public function getIdMoniteur(): Collection
+    {
+        return $this->idMoniteur;
+    }
+
+    public function addIdMoniteur(Moniteur $idMoniteur): self
+    {
+        if (!$this->idMoniteur->contains($idMoniteur)) {
+            $this->idMoniteur[] = $idMoniteur;
+            $idMoniteur->setIdMoniteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdMoniteur(Moniteur $idMoniteur): self
+    {
+        if ($this->idMoniteur->removeElement($idMoniteur)) {
+            // set the owning side to null (unless already changed)
+            if ($idMoniteur->getIdMoniteur() === $this) {
+                $idMoniteur->setIdMoniteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AssistanteSociale[]
+     */
+    public function getIdAssistanteSociale(): Collection
+    {
+        return $this->idAssistanteSociale;
+    }
+
+    public function addIdAssistanteSociale(AssistanteSociale $idAssistanteSociale): self
+    {
+        if (!$this->idAssistanteSociale->contains($idAssistanteSociale)) {
+            $this->idAssistanteSociale[] = $idAssistanteSociale;
+            $idAssistanteSociale->setIdAssistantSociale($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdAssistanteSociale(AssistanteSociale $idAssistanteSociale): self
+    {
+        if ($this->idAssistanteSociale->removeElement($idAssistanteSociale)) {
+            // set the owning side to null (unless already changed)
+            if ($idAssistanteSociale->getIdAssistantSociale() === $this) {
+                $idAssistanteSociale->setIdAssistantSociale(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Psychologue[]
+     */
+    public function getIdPsychologue(): Collection
+    {
+        return $this->idPsychologue;
+    }
+
+    public function addIdPsychologue(Psychologue $idPsychologue): self
+    {
+        if (!$this->idPsychologue->contains($idPsychologue)) {
+            $this->idPsychologue[] = $idPsychologue;
+            $idPsychologue->setIdPsychologue($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdPsychologue(Psychologue $idPsychologue): self
+    {
+        if ($this->idPsychologue->removeElement($idPsychologue)) {
+            // set the owning side to null (unless already changed)
+            if ($idPsychologue->getIdPsychologue() === $this) {
+                $idPsychologue->setIdPsychologue(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Infirmiere[]
+     */
+    public function getIdInfirmiere(): Collection
+    {
+        return $this->idInfirmiere;
+    }
+
+    public function addIdInfirmiere(Infirmiere $idInfirmiere): self
+    {
+        if (!$this->idInfirmiere->contains($idInfirmiere)) {
+            $this->idInfirmiere[] = $idInfirmiere;
+            $idInfirmiere->setIdInfirmiere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdInfirmiere(Infirmiere $idInfirmiere): self
+    {
+        if ($this->idInfirmiere->removeElement($idInfirmiere)) {
+            // set the owning side to null (unless already changed)
+            if ($idInfirmiere->getIdInfirmiere() === $this) {
+                $idInfirmiere->setIdInfirmiere(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MesureProtection[]
+     */
+    public function getIdMesureProtection(): Collection
+    {
+        return $this->idMesureProtection;
+    }
+
+    public function addIdMesureProtection(MesureProtection $idMesureProtection): self
+    {
+        if (!$this->idMesureProtection->contains($idMesureProtection)) {
+            $this->idMesureProtection[] = $idMesureProtection;
+            $idMesureProtection->setIdMesureProtection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdMesureProtection(MesureProtection $idMesureProtection): self
+    {
+        if ($this->idMesureProtection->removeElement($idMesureProtection)) {
+            // set the owning side to null (unless already changed)
+            if ($idMesureProtection->getIdMesureProtection() === $this) {
+                $idMesureProtection->setIdMesureProtection(null);
             }
         }
 
