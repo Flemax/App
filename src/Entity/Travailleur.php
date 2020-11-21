@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TravailleurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +113,16 @@ class Travailleur
      * @ORM\Column(type="integer", nullable=true)
      */
     private $NumCPF;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Atelier::class, mappedBy="idAtelier", orphanRemoval=true)
+     */
+    private $idAtelier;
+
+    public function __construct()
+    {
+        $this->idAtelier = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -341,6 +353,36 @@ class Travailleur
     public function setNumCPF(?int $NumCPF): self
     {
         $this->NumCPF = $NumCPF;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Atelier[]
+     */
+    public function getIdAtelier(): Collection
+    {
+        return $this->idAtelier;
+    }
+
+    public function addIdAtelier(Atelier $idAtelier): self
+    {
+        if (!$this->idAtelier->contains($idAtelier)) {
+            $this->idAtelier[] = $idAtelier;
+            $idAtelier->setIdAtelier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdAtelier(Atelier $idAtelier): self
+    {
+        if ($this->idAtelier->removeElement($idAtelier)) {
+            // set the owning side to null (unless already changed)
+            if ($idAtelier->getIdAtelier() === $this) {
+                $idAtelier->setIdAtelier(null);
+            }
+        }
 
         return $this;
     }

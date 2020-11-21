@@ -27,6 +27,12 @@ class Atelier
      */
     private $Description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Travailleur::class, inversedBy="idAtelier")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idAtelier;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Atelier
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getIdAtelier(): ?Travailleur
+    {
+        return $this->idAtelier;
+    }
+
+    public function setIdAtelier(?Travailleur $idAtelier): self
+    {
+        $this->idAtelier = $idAtelier;
 
         return $this;
     }
